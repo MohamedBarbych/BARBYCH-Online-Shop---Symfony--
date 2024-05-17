@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation Failed{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="alert alert-danger text-center" role="alert">
+            <h1>Confirmation failed! 😞</h1>
+            <p>Sorry, we could not confirm your verification code. Please double-check the code you entered and try again. 🛑</p>
+        </div>
+        <a href="{{ path('home') }}" class="btn btn-success">Go to Home</a>
+        <a href="{{ path('app_verification') }}" class="btn btn-primary">Go back</a>
+
+    </div>
+{% endblock %}

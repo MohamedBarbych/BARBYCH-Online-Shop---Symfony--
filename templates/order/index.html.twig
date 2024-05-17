@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %} 
+{% block title %}Orders List{% endblock %} 
+    {% block body %}
+    <div class="row my-5">
+        <div class="col-md-10 mx-auto">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{message}}
+            </div> {% endfor %}
+            <div >
+                <div class="card-header" style="background-color: rgb(212, 202, 202);">
+                    <div class=" card-title">
+                        <b>Orders List</b>
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover ">
+                    <thead>
+                        <tr>
+                            <th style="background-color: rgb(176, 229, 144);">ID</th>
+                            <th style="background-color: rgb(176, 229, 144);">Product Name</th>
+                            <th style="background-color: rgb(176, 229, 144);">Price</th>
+                            <th style="background-color: rgb(176, 229, 144);">Status</th>
+                            <th style="background-color: rgb(176, 229, 144);">Action</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td>{{order.pname}}</td>
+                            <td style="background-color: rgb(169, 246, 218); ">{{order.price}}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: rgb(169, 246, 218);color: blue;">
+                                        {{order.status}}
+                                    </button>
+                                    <ul class="dropdown-menu" style="background-color: rgb(169, 246, 218);">
+                                        <li style="background-color: rgb(169, 246, 218);"><a class="dropdown-item" href="{{path('order_status_update',{'orderId': order.id,status: 'shipped'})}}" style="background-color: rgb(169, 246, 218);">Shipped</a></li>
+                                        <li style="background-color: rgb(169, 246, 218);"><a class="dropdown-item" href="{{path('order_status_update',{'orderId': order.id,status: 'rejected'})}}" style="background-color: rgb(169, 246, 218);">Rejected</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+    
+                            <td>
+                                <form id="deleteForm_{{ order.id }}" action="{{ path('order_delete', {'orderId': order.id}) }}" method="POST">
+                                    <button class="btn btn-sm btn-danger delete-btn" data-order-id="{{ order.id }}">
+                                        Delete
+                                    </button>
+                                </form>
+                                
+                        </tr>{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const orderId = this.getAttribute('data-order-id');
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Envoyer une requête de suppression avec AJAX
+                            fetch('{{ path('order_delete', {'orderId': 'REPLACE_ORDER_ID'}) }}'.replace('REPLACE_ORDER_ID', orderId), {
+                                method: 'DELETE',
+                            }).then(response => {
+                                if (response.ok) {
+                                    // Recharger la page après la suppression réussie
+                                    window.location.reload();
+                                } else {
+                                    console.error('La suppression a échoué');
+                                }
+                            }).catch(error => {
+                                console.error('Erreur lors de la suppression:', error);
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+{% endblock %}
+    
+    

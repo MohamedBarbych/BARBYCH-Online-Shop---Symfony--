@@ -1,0 +1,47 @@
+{# templates/paypal/payment.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Verification Code{% endblock %}
+
+{% block body %}
+    
+        <div id="whatsapp-message" class="vibrate">
+        Check your Phone
+        </div>
+        <h1 style="color: #009EFF;display: inline-block;" ><b>Whatssap verification code : <i class="fab fa-whatsapp" style="color: #25d366;"></i></b> 
+        </h1>
+    
+<style>
+    @keyframes vibrate {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(2px, -2px); }
+        60% { transform: translate(-2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+    }
+
+    .vibrate {
+        margin-left: 500px;
+        margin-bottom: 50px;
+     
+        width: 200px;
+        animation: vibrate 0.3s infinite;
+        color: #25d366; 
+        font-weight: bold;
+        font-size: 20px;
+        padding: 10px;
+        border: 2px solid #25d366;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+</style>
+    {{ form_start(form) }}
+    {{ form_row(form.verifCode) }}
+   
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+
+{% endblock %}

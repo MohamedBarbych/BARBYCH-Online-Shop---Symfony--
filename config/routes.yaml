@@ -1,0 +1,18 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+paypal_payment:
+    path: '/pay_pal/index'
+    controller: App\Controller\PayPalController::index
+
+payment_success:
+    path: '/payment/success'
+    controller: App\Controller\PayPalController::paymentSuccess
+
+payment_failure:
+    path: '/payment/failure'
+    controller: App\Controller\PayPalController::paymentFailure
+about:
+    path: /about/index
+    controller: App\Controller\AboutController::index

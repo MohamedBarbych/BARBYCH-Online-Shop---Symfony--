@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="my-3 d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-custom position-relative">
+                Products
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ products|length }}
+                    <span class="visually-hidden">products</span>
+                </span>
+            </button>
+            
+            <div>
+                <a href="{{ path('home') }}" class="btn btn-sm btn-outline-custom mx-l">
+                    All
+                </a>
+                {% for category in categories %}
+                <a href="{{ path('product_category', {'categoryId': category.id}) }}" class="btn btn-sm btn-outline-custom mx-l">
+                    {{ category.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            {% if products|length %}
+            {% for product in products %}
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    {% if product.image %}
+                    <img src="{{ absolute_url('uploads/' ~ product.image) }}" alt="{{ product.name }}" class="card-img-top">
+                    {% else %}
+                    <img src="{{ absolute_url('uploads/flowers.jpg') }}" alt="{{ product.name }}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <h5><span class="text" style="color: green;">{{ product.price }} MAD</span></h5>
+                        <a href="{{ path('product_show', { 'id': product.id }) }}" class="btn btn-sm btn" style="background-color: yellowgreen;"">
+                            View
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-info">
+                No products found!
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-outline-custom {
+        color: #20B2AA;
+        border-color: #20B2AA;
+    }
+    
+    .btn-outline-custom:hover {
+        color: #fff;
+        background-color: #20B2AA;
+        border-color: #20B2AA;
+    }
+    
+    .btn-custom {
+        color: #fff;
+        background-color: #20B2AA;
+        border-color: #20B2AA;
+    }
+    
+    .btn-custom:hover {
+        color: #20B2AA;
+        border-color: #20B2AA;
+    }
+</style>
+
+{% endblock %}

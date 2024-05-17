@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+<div class="row my-5">
+    <div class="col-md-6 mx-auto">
+        <div>
+            <div class="card-header">
+                <span style="color: rgb(17, 255, 81);margin-left: 190px;margin-bottom: 20px; background-color: grey;padding-left: 50px;padding-right: 50px;padding-top: 10px;padding-bottom: 3px;border-radius: 5px;align-items: center;"> Register </span>
+            </div>
+            <div class="card-body">
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.phoneNumber) }} 
+                {{ form_row(registrationForm.plainPassword,{label: 'Password'}) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+                <div>
+                    {{ form_label(registrationForm.verificationMethod) }}
+                    <div class="d-flex flex-column">
+                        <div class="d-flex">
+                             {{ form_widget(registrationForm.verificationMethod.0)  }}<i style="margin-left: 20px;color: green;" class="fab fa-whatsapp mr-2"></i>
+                        </div>
+                        <div class="d-flex" >
+                             {{ form_widget(registrationForm.verificationMethod.1) }}<i style="margin-left: 20px;color: red;" class="fas fa-phone-alt mr-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" style="margin-top: 40px;">Confirm</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

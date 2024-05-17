@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %} 
+{% block title %}
+    Create Product
+{% endblock %} 
+{% block body %}
+<div class="container">
+    <div class="row" >
+        <div class="col-md-8 mx-auto">
+            <div >
+                <div class="card-header" style="background-color: #f9ef98; align-items: center;justify-content: center;display: flex;">
+                    <b> Create new Product </b>
+                </div>
+                <div class="card-body">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

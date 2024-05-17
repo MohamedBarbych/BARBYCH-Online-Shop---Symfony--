@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block body %}
+<div class="contact-container">
+    <div class="contact-info" id="phone">
+        <i class="fas fa-phone"></i>
+        <p>05-37-46-82-87</p>
+    </div>
+    <div class="contact-info" id="email">
+        <i class="fas fa-envelope"></i>
+        <p>BARBYCH@BIO.ma</p>
+    </div>
+    <div class="contact-info" id="instagram">
+        <i class="fab fa-instagram"></i>
+        <p>@BARBYCH_BIO.ma</p>
+    </div>
+    <!-- Ajoutez d'autres divs pour d'autres informations de contact si nécessaire -->
+</div>
+
+<style>
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-info {
+    margin: 20px;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.contact-info i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin: 0;
+}
+
+/* Hover Styles */
+.contact-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info:hover i {
+    color: #f9f9f9; /* Change la couleur de l'icône au survol */
+}
+
+.contact-info:hover p {
+    color: #333; /* Change la couleur du texte au survol */
+}
+
+/* Styles spécifiques pour chaque type de contact */
+#phone {
+    background-color: #ffeaa7; /* Couleur de fond pour le téléphone */
+}
+
+#email {
+    background-color: #74b9ff; /* Couleur de fond pour l'email */
+}
+
+#instagram {
+    background-color: #ff7675; /* Couleur de fond pour Instagram */
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation Successful{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="alert alert-success text-center" role="alert">
+            <h1>Your verification code confirmation was successful! 😊</h1>
+            <p>Thank you for confirming your code. Your account is now verified. 🎉</p>
+        </div>
+        <a href="{{ path('home') }}" class="btn btn-success">Go to Home</a>
+
+    </div>
+{% endblock %}
